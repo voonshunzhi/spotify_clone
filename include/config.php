@@ -4,6 +4,8 @@
     //Because the output might be altered, the web server would always wait for those scripts to run till rhe end before it sends the output. 
     ob_start();
 
+    session_start();
+
     $timezone = date_default_timezone_set("Asia/Kuala_Lumpur");
     
     $con = mysqli_connect("localhost","root","Shunzhivoon112893332030","spotify");

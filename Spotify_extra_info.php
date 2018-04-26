@@ -16,6 +16,7 @@ In simple words, CLASS are files that store variable and fucntion so that you ca
 
 Log in info :
 - How do we make sure that only logged in user can access the content of our webpages?
+- So , We will have to remember whether they have logged in or not
 
 
 
