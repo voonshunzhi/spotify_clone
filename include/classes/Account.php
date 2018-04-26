@@ -9,6 +9,27 @@
         $this -> errorArray = array();
         $this -> con = $con;
     }
+     
+    //Log in verification
+    public function logIn($un,$pw)
+    {
+        $pw = md5($pw);
+        $un = str_replace(" ","",$un);
+        $query = mysqli_query($this -> con,"SELECT * FROM users WHERE username = '$un' AND password = '$pw'");
+        if(mysqli_num_rows($query) == 1)
+        {
+            return true;
+        }
+        else
+        {
+            array_push($this -> errorArray,Constants::$logInFailed);
+            return;
+            
+        }
+    }
+        
+        
+        
     //Public function need to be called manually,and later it calls the private function that it contains in this case
     public function register($un,$fn,$ln,$e1,$e2,$pw1,$pw2)
     {
@@ -64,7 +85,14 @@
             return;
                 
         }
-        //TODO: Check if the username have already existed
+        
+        $checkUsernameQuery = mysqli_query($this -> con,"SELECT username FROM users WHERE username = '$un'");
+        //Check the number of rows of the table that contains the username
+        if(mysqli_num_rows($checkUsernameQuery) != 0 )
+        {
+            array_push($this -> errorArray, Constants::$usernameTaken);
+            return;
+        }
     }
 
     private function validateFirstname($fn)
@@ -103,7 +131,13 @@
             array_push($this -> errorArray, Constants::$emailInvalid);
             return;
         }
-        //TODO : Check if the email has already been used or not
+        $checkEmailQuery = mysqli_query($this -> con,"SELECT email FROM users WHERE email = '$e1'");
+        if(mysqli_num_rows($checkEmailQuery) != 0 )
+        {
+            array_push($this -> errorArray, Constants::$emailTaken);
+            return;
+        }
+        
     }
 
     private function validatePassword($pw1,$pw2)
