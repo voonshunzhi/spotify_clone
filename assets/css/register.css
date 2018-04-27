@@ -107,6 +107,13 @@ html,body
     cursor: pointer;
 }
 
+#logInForm span.errorMessage
+{
+    color: #07d159;
+    font-weight: bold;
+    display: block;
+}
+
 div.hasAccountText
 {
     margin-top: 15px;
@@ -143,4 +150,8 @@ div.hasAccountText span
     list-style:none;
     padding: 10px;
     font-size: 20px;
+    background-image: url(../img/icons/icons8_Checkmark_25px.png);
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    
 }
