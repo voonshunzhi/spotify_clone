@@ -119,4 +119,28 @@ div.hasAccountText span
     font-size: 13px;
     cursor: pointer;
 }
-
+#logInText
+{
+    padding: 40px;
+    display: table-cell;
+}
+#logInText h1
+{
+    color: #07d159;
+    font-weight: bold;
+    font-size: 60px;
+}
+#logInText h2
+{
+    margin: 35px 0;
+}
+#logInText ul
+{
+    padding: 0;
+}
+#logInText ul li
+{
+    list-style:none;
+    padding: 10px;
+    font-size: 20px;
+}
