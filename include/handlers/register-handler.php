@@ -41,7 +41,7 @@
         if($wasSuccessful)
         {
             //Redirect to different page
-            $_SESSION["userLoggedIn"] = $username;
+            $_SESSION["userLoggedIn"] = $userName;
             header("Location:index.php");
         }
         

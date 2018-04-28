@@ -10,7 +10,8 @@
         $this -> con = $con;
     }
      
-    //Log in verification
+    //Log in validation
+        
     public function logIn($un,$pw)
     {
         $pw = md5($pw);

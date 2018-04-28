@@ -3,6 +3,7 @@ html,body
     /*Things between the <body> tags is the visible part of the html docuemnt*/
     margin: 0;
     padding: 0;
+    /*Span the whole visile content(body) of the script to the whole viewport */
     height: 100%;
 }
 #background

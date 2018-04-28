@@ -6,6 +6,7 @@
     $account = new Account($con);
     include "handlers/register-handler.php";
     include "handlers/logIn-handler.php";
+    //Retain the set value in the input
     function getInputValue($name)
     {
         if(isset($_POST[$name]))

@@ -1,12 +1,18 @@
 
 /* 1) CSS FLEXBOX RULES (priority set the display of the container display : flex) FOR SEXY DISPLAY AND PERFECT ITEMS ALIGNMENT
+
 - Property 1,Flex-direction : 
 - row : align the items in the container in a single row starts from very left
 - column : align the items in the container in a single column starts from very top
+
 - Property 2, Justify-content : alignment of items along x-axis:
 - center : align the element in the center of the x-axis
+- space-around : put space around the items
+- space-between : put space in between the items 
+
 - Property 3, align-items : alignment of item along y-axis:
 - center : align the element in the center of the y-axis
+
 - Propety 4, flex-wrap : whether items wrapped to the next row (applied only when the combined length of the items in a row exceed the length of the container):
 - wrap
 - no-wrap(default)
