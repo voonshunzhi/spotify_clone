@@ -35,10 +35,10 @@
                         <img src="../assets/img/icons/previous.png" alt="previous">
                         </button>
                         <button class="controlButton pause" title="Pause Button" style="display:none;">
-                        <img src="../assets/img/icons/pause.png" alt="pause">
+                        <img src="../assets/img/icons/pause.png" alt="pause" style="height:32px;width:32px">
                         </button>
                          <button class="controlButton play" title="Play Button">
-                        <img src="../assets/img/icons/play.png" alt="play">
+                        <img src="../assets/img/icons/play.png" alt="play" style="height:32px;width:32px">
                         </button>
                          <button class="controlButton next" title="Next Button">
                         <img src="../assets/img/icons/next.png" alt="next">
