@@ -24,7 +24,14 @@
     
     <div id="nowPlayingBarContainer">
         <div id="nowPlayingBar">
-            <div id="nowPlayingLeft"></div>
+            <div id="nowPlayingLeft">
+                <div class="content">
+<!-- span tags in html : much like div but it is inline element rather than block elements, it doesn't really represent something but it is used to group elements like for styling purpose-->
+                    <span class="albumLink">
+                        <img src="../assets/img/square_pic.jpg" class="albumArtwork">
+                    </span>
+                </div>
+            </div>
             <div id="nowPlayingCenter">
                 <div class="content playerControls">
                     <div class="buttons">
@@ -46,6 +53,15 @@
                          <button class="controlButton repeat" title="Repeat Button">
                         <img src="../assets/img/icons/repeat.png" alt="repeat">
                         </button>
+                    </div>
+                    <div class="playBackBar">
+                        <span class="progressTime current">0.00</span>
+                        <div class="progressBar">
+                            <div class="progressBarBg">
+                                <div class="progress"></div>
+                            </div>
+                        </div>
+                        <span class="progressTime remaining">0.00</span>
                     </div>
                 </div>
             </div>

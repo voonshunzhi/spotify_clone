@@ -151,6 +151,7 @@
             
         }
         //If the password does not match the condition(the 1st parameter)which means ^ not in A-Z,a-z,0-9 which in other words, means that it might contain special character
+        //preg_match() function search a string for a pattern, if the pattern exists, it will return true
         if(preg_match('/[^A-Za-z0-9]/',$pw1))
         {
             array_push($this -> errorArray, Constants::$passwordsNotAlphanumeric);

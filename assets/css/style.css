@@ -45,7 +45,7 @@ html,body
 {
     width: 100%;
     position: relative;
-    
+    height: 57px;
 }
 
 .playerControls .buttons
@@ -67,3 +67,50 @@ html,body
     width: 20px;
 }
 
+.playBackBar
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.playBackBar .progressTime
+{
+    color: #a0a0a0;
+    font-size: 11px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.playBackBar .progressBar
+{
+    width: 100%;
+    display: inline-flex;
+    height: 12px;
+    cursor: pointer;
+}
+
+.playBackBar .progressBar .progressBarBg
+{
+    height: 4px;
+    width: 100%;
+    position: relative;
+    background-color: #404040;
+    border-radius: 2px;
+    margin-top: 3px;
+}
+
+.playBackBar .progressBar .progressBarBg .progress
+{
+    width: 0;
+    position: relative;
+    height: 4px;
+    background-color: #a0a0a0;
+}
+
+#nowPlayingLeft .albumLink img.albumArtwork
+{
+    width: 12%;
+    margin-right: 15px;
+    max-width: 57px;
+    float: left;
+}
