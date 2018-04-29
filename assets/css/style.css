@@ -4,6 +4,12 @@ html,body
     margin: 0;
     height: 100%;
 }
+/*Target all the element in html using * that means all*/
+*
+{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+}
 
 #nowPlayingBarContainer
 {
@@ -24,11 +30,19 @@ html,body
     box-sizing: border-box;
 }
 
-#nowPlayingLeft,#nowPlayingRight
+#nowPlayingLeft
 {
     width: 30%;
     position: relative;
     min-width: 180px;
+}
+#nowPlayingRight
+{
+    width: 30%;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #nowPlayingCenter
@@ -114,3 +128,62 @@ html,body
     max-width: 57px;
     float: left;
 }
+
+.trackInfo
+{
+    display: table;
+}
+
+.trackInfo .trackName
+{
+    margin: 6px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.trackInfo .artistName span
+{
+    color: #a0a0a0;
+    font-size: 10px;
+}
+
+#nowPlayingRight .volumeBar button
+{
+    background-color: transparent;
+    border: 0;
+}
+.volumeBar
+{
+    width: 180px;
+    display: flex;
+    align-items: center;
+}
+
+.volumeBar .progressBar .progressBarBg
+{
+    height: 4px;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    background-color: #404040;
+    border-radius: 2px;
+    margin-top: 3px;
+}
+
+.volumeBar .progressBar
+{
+    width: 125px;
+    display: inline-flex;
+    height: 12px;
+    cursor: pointer;
+}
+
+.volumeBar .progressBar .progressBarBg .progress
+{
+    width: 0;
+    position: relative;
+    height: 4px;
+    background-color: #a0a0a0;
+}
+
+

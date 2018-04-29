@@ -30,6 +30,14 @@
                     <span class="albumLink">
                         <img src="../assets/img/square_pic.jpg" class="albumArtwork">
                     </span>
+                    <div class="trackInfo">
+                        <span class="trackName">
+                            <span>Best Song Ever</span>
+                        </span>
+                        <span class="artistName">
+                            <span>One Direction</span>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div id="nowPlayingCenter">
@@ -65,7 +73,18 @@
                     </div>
                 </div>
             </div>
-            <div id="nowPlayingRight"></div>
+            <div id="nowPlayingRight">
+                <div class="volumeBar">
+                    <button class="controlButton volume" title="Volume button" >
+                        <img src="../assets/img/icons/volume.png" alt="Volume" style="width:25px;cursor:pointer;">
+                    </button>
+                    <div class="progressBar">
+                        <div class="progressBarBg">
+                            <div class="progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
