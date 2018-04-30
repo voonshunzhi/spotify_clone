@@ -186,4 +186,64 @@ html,body
     background-color: #a0a0a0;
 }
 
+#topContainer
+{
+    min-height: 100%;
+    width: 100%;
+}
 
+#navBarContainer
+{
+    background-color: black;
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    padding: 25px;
+}
+
+.navBar
+{
+    display: flex;
+    flex-direction: column;
+    -ms-flex-direction:column;
+}
+
+.navBar .group
+{
+    padding: 10px 0;
+    border-top: solid 1px #a0a0a0;
+}
+
+.group .navItem
+{
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 700;
+    display: block;
+    letter-spacing: 1px;
+    position: relative
+}
+
+.navItemLink
+{
+    color: #a0a0a0;
+    text-decoration: none;
+}
+
+.navItemLink:hover
+{
+    color: white;
+}
+.logo
+{
+    margin-bottom: 15px;
+}
+
+img.Search
+{
+    position: absolute;
+    width: 25px;
+    right: 5px;
+    top: 5px;
+
+}

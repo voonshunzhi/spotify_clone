@@ -12,7 +12,9 @@ html,body
     background-image: url(../img/background.jpg);
     background-position: center;
     background-size: cover;
+    /*Width of the div is set to 100% of the body container*/
     width: 100%;
+    /*Height of the div is set to 100% of the body container*/
     height: 100%;
     display: table;
 }
