@@ -3,6 +3,8 @@ html,body
     padding: 0;
     margin: 0;
     height: 100%;
+    background-color: #181818;
+    min-width: 720px;
 }
 /*Target all the element in html using * that means all*/
 *
@@ -186,19 +188,20 @@ html,body
     background-color: #a0a0a0;
 }
 
-#topContainer
+#mainContainer #topContainer
 {
     min-height: 100%;
     width: 100%;
 }
 
-#navBarContainer
+#mainContainer #topContainer #navBarContainer
 {
     background-color: black;
     width: 220px;
     height: 100vh;
     position: fixed;
     padding: 25px;
+    box-sizing: border-box;
 }
 
 .navBar
@@ -246,4 +249,48 @@ img.Search
     right: 5px;
     top: 5px;
 
+}
+
+#mainViewContainer
+{
+    width: calc(100% - 220px);
+    margin-left: 220px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    padding-bottom: 400px;
+    
+}
+
+#mainViewContainer #mainContent h1
+{
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+
+.gridViewContainer
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    
+}
+.gridViewItem
+{
+    display: inline-block;
+    margin: 10px 10px;
+    text-align: center;
+}
+
+.gridViewItem img
+{
+    width: 250px;
+    
+}
+
+.gridViewItem a
+{
+    text-decoration: none;
 }
