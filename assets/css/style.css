@@ -294,3 +294,118 @@ img.Search
 {
     text-decoration: none;
 }
+.entityInfo
+{
+    padding: 40px;
+}
+.entityInfo::after
+{
+    content: " ";
+    clear: both;
+    display: block;
+}
+.entityInfo .leftSection
+{
+    float: left;
+    margin-right: 30px;
+}
+.entityInfo .leftSection img
+{
+    width: 250px;
+    
+}
+.entityInfo .RightSection
+{
+    padding-top: 20px;
+}
+.entityInfo .RightSection h2
+{
+    margin-top: 0;
+}
+.entityInfo .RightSection h5
+{
+    font-weight: normal;
+    font-size: 12px;
+}
+.trackList
+{
+    padding: 0;
+}
+.tracklistRow
+{
+    height: 40px;
+    padding: 15px 10px;
+    list-style: none;
+}
+
+.tracklistRow:hover
+{
+    background-color: #282828;
+}
+
+.tracklistRow .trackInfo span
+{
+    color:#939393;
+    font-weight: 400;
+}
+
+.tracklistRow .trackCount
+{
+    width: 8%;
+    float: left;
+}
+
+.tracklistRow .trackCount img
+{
+    width: 20px;
+    visibility: hidden;
+}
+
+.tracklistRow:hover .trackCount img
+{
+    visibility: visible;
+}
+
+.tracklistRow:hover .trackCount span
+{
+    visibility: hidden;
+}
+
+.tracklistRow .trackInfo
+{
+    width: 75%;
+    float: left;
+}
+.trackOptions img
+{
+    float: left;
+}
+.trackOptions::after
+{
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+img.optionsButton
+{
+    width: 20px;
+    margin-top: 20px;
+    visibility: hidden;
+}
+
+.tracklistRow:hover img.optionsButton
+{
+    visibility: visible;
+}
+
+.trackDuration
+{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.artistName
+{
+    font-size: 10px;
+}
