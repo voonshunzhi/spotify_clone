@@ -11,9 +11,10 @@ function Audio()
     this.audio = document.createElement('audio');//this return <audio> tag
     
     //Setting the function of the Audio object
-    this.setTrack = function(src)
+    this.setTrack = function(track)
     {
-        this.audio.src = src;
+        this.currentlyPlaying = track;
+        this.audio.src = "../" + track.path;
     }
     
     this.play = function()

@@ -8,8 +8,8 @@
     $jsonArray = json_encode($resultArray);
 ?>
 <script>
-    
-        $('document').ready(function()//Just to check if the document object is ready, this is beacuse the Jquery might need to access the DOM, so if the javascript is linked at the bottom of the script, this function might not be necessary since the Document object is already ready but if it is place before the <body> tags then this is neccessary because only when the document object is ready the javascript(jquery) can be run 
+        //Just to check if the document object is ready, this is beacuse the Jquery might need to access the DOM, so if the javascript is linked at the bottom of the script, this function might not be necessary since the Document object is already ready but if it is place before the <body> tags then this is neccessary because only when the document object is ready the javascript(jquery) can be run 
+        $('document').ready(function()
         {
             currentPlaylist = <?php echo $jsonArray; ?>;
             audioElement = new Audio();
@@ -18,15 +18,41 @@
     
         function setTrackOfSong(trackId,newPlayList,plays)
         {
-            audioElement.setTrack('../assets/music/bensound-acousticbreeze.mp3');
-            if(plays)
+            //Making an AJAX call in Jquery
+            //1st - the url 2nd - the data you want to send to retrieve data from database(key value pair) 3rd - callback function(what do you want to do with the data retrieved)
+            $.post('handlers/Ajax/getSongJson.php',{songId:trackId},function(data)
             {
-                audioElement.play();
-            }
+                console.log(data);
+                var track = JSON.parse(data);
+                console.log(track);
+                $('.trackName span').text(track.title);
+                
+                //Getting the Artist Name via AJAX in Jquery
+                $.post('handlers/Ajax/getArtistJson.php',{artistId:track.artist},function(data)
+                {
+                    var artist = JSON.parse(data);
+                    $('.artistName span').text(artist.name);
+                });
+                
+                //Getting the Album Name via AJAX in Jquery
+                $.post('handlers/Ajax/getAlbumJson.php',{albumId:track.album},function(data)
+                {
+                    var album = JSON.parse(data);
+                    $('.albumLink img').attr("src",album.artworkPath);
+                });
+                audioElement.setTrack(track);
+            });
+            
         }
     
     function playSong()
     {
+        if(audioElement.audio.currentTime == 0 )
+        {
+            $.post('handlers/Ajax/updatePlays.php',{songId:audioElement.currentlyPlaying.id});
+            console.log(audioElement.currentlyPlaying.id);
+        }
+        
         $('.play').hide();
         $('.pause').show();
         audioElement.play();
@@ -51,10 +77,10 @@
                         </span>
                         <div class="trackInfo">
                             <span class="trackName">
-                                <span>Best Song Ever</span>
+                                <span></span>
                             </span>
                             <span class="artistName">
-                                <span>One Direction</span>
+                                <span></span>
                             </span>
                         </div>
                     </div>
