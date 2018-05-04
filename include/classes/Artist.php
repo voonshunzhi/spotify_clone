@@ -1,4 +1,5 @@
 <?php
+    //To retrieve data from Artist table in the database
     class Artist
     {
         private $con;

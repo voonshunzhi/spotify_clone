@@ -1,8 +1,6 @@
 <?php 
     include "header.php";
-    include "classes/Artist.php";
-    include "classes/Album.php";
-    include "classes/Song.php";
+    
 
     if(isset($_GET['id']))
     {

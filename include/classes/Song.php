@@ -1,4 +1,5 @@
 <?php
+//To retrieve data from Song table in the database
 class Song
 {
     //Variable needed to carry out the function

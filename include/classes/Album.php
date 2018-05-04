@@ -1,4 +1,5 @@
 <?php
+    //To retrive data from the Album table in the database
     class Album
     {
         private $con;
@@ -56,7 +57,7 @@
         
         public function getSongIds()
         {
-            $songQuery = mysqli_query($this -> con,"SELECT id FROM songs WHERE album = '$this->id' ORDER by albumOrder ASC");
+            $songQuery = mysqli_query($this -> con,"SELECT id FROM songs WHERE album = '$this->id' ORDER BY albumOrder ASC");
             
             $array = array();
             
