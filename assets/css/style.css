@@ -83,7 +83,7 @@ html,body
     width: 20px;
 }
 
-.playBackBar
+.playBackBar,.volumeBar
 {
     display: flex;
     flex-direction: row;
@@ -97,7 +97,8 @@ html,body
     text-align: center;
 }
 
-.playBackBar .progressBar
+.playBackBar .progressBar,
+.volumeBar .progressBar
 {
     width: 100%;
     display: inline-flex;
@@ -105,7 +106,17 @@ html,body
     cursor: pointer;
 }
 
-.playBackBar .progressBar .progressBarBg
+.playBackBar .progressBar,
+.volumeBar .progressBar
+{
+    width: 100%;
+    display: inline-flex;
+    height: 12px;
+    cursor: pointer;
+}
+
+.playBackBar .progressBar .progressBarBg,
+.volumeBar .progressBar .progressBarBg
 {
     height: 4px;
     width: 100%;
@@ -116,6 +127,14 @@ html,body
 }
 
 .playBackBar .progressBar .progressBarBg .progress
+{
+    width: 0;
+    position: relative;
+    height: 4px;
+    background-color: #a0a0a0;
+}
+
+ .volumeBar .progressBar .progressBarBg .progressVolume
 {
     width: 0;
     position: relative;

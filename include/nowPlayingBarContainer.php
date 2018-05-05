@@ -8,18 +8,95 @@
     $jsonArray = json_encode($resultArray);
 ?>
 <script>
-        //Just to check if the document object is ready, this is beacuse the Jquery might need to access the DOM, so if the javascript is linked at the bottom of the script, this function might not be necessary since the Document object is already ready but if it is place before the <body> tags then this is neccessary because only when the document object is ready the javascript(jquery) can be run 
-        $('document').ready(function()
+        
+        $('document').ready(function()//All the code under inside the curly brackets will run once the page loads, while the code outside this will not
         {
             currentPlaylist = <?php echo $jsonArray; ?>;
             audioElement = new Audio();
-            setTrackOfSong(currentPlaylist[0],currentPlaylist,false)
+            setTrackOfSong(currentPlaylist[0],currentPlaylist,false);
+            updateVolumeProgressBar(audioElement.audio);
+            
+            //To prevent the other button from being highlishted when dragging mouse in the now playing bar
+            //the .on part will detect those events
+            $('#nowPlayingBarContainer').on('mousedown mousemove touchdown touchmove',function(e){
+                e.preventDefault();
+            })
+            
+            //Dragging the progressbar
+            $('.playBackBar .progressBar').mousedown(function()
+            {
+                mousedown = true;
+            })
+            
+            $('.playBackBar .progressBar').mousemove(function(e)
+            {
+                if(mousedown)
+                    {
+                        timefromOffset(e,this);
+                    }
+            })
+            
+            $('.playBackBar .progressBar').mouseup(function(e)
+            {
+                timefromOffset(e,this);
+            })
+            
+            //Dragging the progressVolume bar 
+            
+            $('.volumeBar .progressBar').mousedown(function()
+            {
+                mousedown = true;
+               
+            })
+            
+            $('.volumeBar .progressBar').mousemove(function(e)
+            {
+                if(mousedown)
+                    {
+                        var percentage = e.offsetX / $(this).width();
+                        if(percentage >= 0 && percentage <= 1)
+                        {
+                            audioElement.audio.volume = percentage;
+                             
+                        }
+                    }
+            })
+            
+            $('.volumeBar .progressBar').mouseup(function(e)
+            {
+                var percentage = e.offsetX / $(this).width();
+                if(percentage >= 0 && percentage <= 1)
+                {
+                    audioElement.audio.volume = percentage;
+                }
+            })
+            
+            $(document).mouseup(function()
+            {
+                mousedown = false;
+            })
+            
+            
         });
+    
+        
+        function timefromOffset(mouse,progressBar)
+        {
+            //offsetX returns the position of mouse pointer relative to the topleft corner of the selected element(container)
+            var percentage = mouse.offsetX / $(progressBar).width() * 100;
+            var seconds = audioElement.audio.duration * (percentage/100);
+            audioElement.setTime(seconds);
+            
+        }
     
         function setTrackOfSong(trackId,newPlayList,plays)
         {
             //Making an AJAX call in Jquery
             //1st - the url 2nd - the data you want to send to retrieve data from database(key value pair) 3rd - callback function(what do you want to do with the data retrieved)
+            
+            currentIndex = newPlayList.indexOf(trackId);
+            pauseSong();
+            
             $.post('handlers/Ajax/getSongJson.php',{songId:trackId},function(data)
             {
                 console.log(data);
@@ -65,6 +142,34 @@
         $('.pause').hide();
         audioElement.pause();
     }
+    
+    function nextSong()
+    {
+        if(repeat == true)
+            {
+                audioElement.setTime(0);
+                playSong();
+                return;//Stop the execution of the function
+            }
+        if(currentIndex == currentPlaylist.length - 1)
+            {
+                currentIndex = 0;
+            }
+        else
+        {
+            currentIndex++;
+        }
+        
+        var trackToPlay = currentPlaylist[currentIndex];
+        setTrackOfSong(trackToPlay,currentPlaylist,true);
+    }
+    
+    function setRepeat()
+    {
+        repeat = !repeat;
+        var imageName = repeat? '../assets/img/icons/repeat-active.png' : '../assets/img/icons/repeat.png';
+        $('.controlButton.repeat img').attr("src",imageName);
+    }
 </script>          
 
 <div id="nowPlayingBarContainer">
@@ -100,10 +205,10 @@
                              <button class="controlButton play" title="Play Button" onclick="playSong()">
                             <img src="../assets/img/icons/play.png" alt="play" style="height:32px;width:32px">
                             </button>
-                             <button class="controlButton next" title="Next Button">
+                             <button class="controlButton next" title="Next Button" onclick="nextSong()">
                             <img src="../assets/img/icons/next.png" alt="next">
                             </button>
-                             <button class="controlButton repeat" title="Repeat Button">
+                             <button class="controlButton repeat" title="Repeat Button" onclick='setRepeat()'>
                             <img src="../assets/img/icons/repeat.png" alt="repeat">
                             </button>
                         </div>
@@ -125,7 +230,7 @@
                         </button>
                         <div class="progressBar">
                             <div class="progressBarBg">
-                                <div class="progress"></div>
+                                <div class="progressVolume"></div>
                             </div>
                         </div>
                     </div>
