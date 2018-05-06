@@ -29,6 +29,7 @@ class Song
         $this -> genre = $this -> mysqli_data['genre'];
         $this -> duration = $this -> mysqli_data['duration'];
         $this -> path = $this -> mysqli_data['path'];
+        $this -> id = $this -> mysqli_data['id'];
     }
     
     
@@ -58,7 +59,10 @@ class Song
         return $this -> path;
     }
     
-    
+    public function getId()
+    {
+        return $this -> id;
+    }
     
     
     

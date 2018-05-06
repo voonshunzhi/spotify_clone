@@ -1,9 +1,11 @@
 var audioElement;
 var currentPlaylist = [];
+var shufflePlaylist = [];
+var tempPlaylist = [];
 var mousedown = false;
 var currentIndex = 0;
 var repeat = false;
-
+var shuffle = false;
 
 //Format time function
 function formatTime(seconds)
@@ -43,7 +45,7 @@ function updateVolumeProgressBar(audio)
     $('.progressBar .progressVolume').css("width", volume+'%');
 }
 
-//Creating Audio class that contain all the variable and function to Play A Song SIMILAR TO class IN PHP, so wheneer you want to use those variable or function, just create an object out of it.
+//Creating Audio class that contain all the variable and function to PLAY A SONG SIMILAR TO class IN PHP, so wheneer you want to use those variable or function, just create an object out of it.
 //So what do you need to play a song? An audio tag - as a property : you can pass into it or create 1 inside it 
 
 

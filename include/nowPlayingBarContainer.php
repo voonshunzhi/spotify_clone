@@ -11,9 +11,9 @@
         
         $('document').ready(function()//All the code under inside the curly brackets will run once the page loads, while the code outside this will not
         {
-            currentPlaylist = <?php echo $jsonArray; ?>;
+            newPlaylist = <?php echo $jsonArray; ?>;
             audioElement = new Audio();
-            setTrackOfSong(currentPlaylist[0],currentPlaylist,false);
+            setTrackOfSong(newPlaylist[0],newPlaylist,false);
             updateVolumeProgressBar(audioElement.audio);
             
             //To prevent the other button from being highlishted when dragging mouse in the now playing bar
@@ -89,12 +89,26 @@
             
         }
     
+        //Set the text and image info about the song
         function setTrackOfSong(trackId,newPlayList,plays)
         {
             //Making an AJAX call in Jquery
             //1st - the url 2nd - the data you want to send to retrieve data from database(key value pair) 3rd - callback function(what do you want to do with the data retrieved)
+            if(newPlayList != currentPlaylist)
+                {
+                    currentPlaylist = newPlayList;
+                    shufflePlaylist = currentPlaylist.slice();//Create a copy of the original playlist
+                    shuffleArray(shufflePlaylist);
+                }
             
-            currentIndex = newPlayList.indexOf(trackId);
+            if(shuffle == true)
+                {
+                    currentIndex = shufflePlaylist.indexOf(trackId);
+                }
+            else
+            {
+                currentIndex = newPlayList.indexOf(trackId);
+            }
             pauseSong();
             
             $.post('handlers/Ajax/getSongJson.php',{songId:trackId},function(data)
@@ -160,15 +174,87 @@
             currentIndex++;
         }
         
-        var trackToPlay = currentPlaylist[currentIndex];
+        var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
         setTrackOfSong(trackToPlay,currentPlaylist,true);
     }
     
     function setRepeat()
     {
+        //Toggle switch
         repeat = !repeat;
         var imageName = repeat? '../assets/img/icons/repeat-active.png' : '../assets/img/icons/repeat.png';
         $('.controlButton.repeat img').attr("src",imageName);
+    }
+    
+    function previousSong()
+    {
+        if(audioElement.audio.currentTime >= 3 || currentIndex ==0)
+            {
+                audioElement.setTime(0);
+            }
+        else
+            {
+                currentIndex--;
+            }
+        var tracktoPlay  =  currentPlaylist[currentIndex];
+        setTrackOfSong(tracktoPlay,currentPlaylist,true);
+    }
+    
+    function setMute()
+    {
+        //Toggle switch
+        audioElement.audio.muted = !audioElement.audio.muted;
+        if(audioElement.audio.muted)
+            {
+                var img = "../assets/img/icons/volume-mute.png";
+            }
+        else
+            {
+                var img = "../assets/img/icons/volume.png";
+            }
+        
+        $('.controlButton.volume img').attr('src',img);
+        
+    }
+    
+    function setShuffle()
+    {
+        //Toggle switch
+        shuffle = !shuffle;
+        if(shuffle)
+            {
+                var img = "../assets/img/icons/shuffle-active.png";
+            }
+        else
+            {
+                var img = "../assets/img/icons/shuffle.png";
+            }
+        
+        $('.controlButton.shuffle img').attr('src',img);
+        
+        if(shuffle)
+            {
+                //Randomize playlist
+                shuffleArray(shufflePlaylist);
+                currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
+            }
+        else
+            {
+                //Go back to regular playlist
+                currentIndex =
+               currentPlayList.indexOf(audioElement.currentlyPlaying.id);
+            }
+    }
+    
+    function shuffleArray(array)
+    {
+        for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    
+        }
     }
 </script>          
 
@@ -193,11 +279,11 @@
                 <div id="nowPlayingCenter">
                     <div class="content playerControls">
                         <div class="buttons">
-                            <button class="controlButton shuffle" title="Shuffle Button">
+                            <button class="controlButton shuffle" title="Shuffle Button" onclick="setShuffle()">
                             <img src="../assets/img/icons/shuffle.png" alt="Shuffle">
                             </button>
                              <button class="controlButton previous" title="Previous Button">
-                            <img src="../assets/img/icons/previous.png" alt="previous">
+                            <img src="../assets/img/icons/previous.png" alt="previous" onclick="previousSong()">
                             </button>
                             <button class="controlButton pause" title="Pause Button" style="display:none;" onclick="pauseSong()">
                             <img src="../assets/img/icons/pause.png" alt="pause" style="height:32px;width:32px">
@@ -226,7 +312,7 @@
                 <div id="nowPlayingRight">
                     <div class="volumeBar">
                         <button class="controlButton volume" title="Volume button" >
-                            <img src="../assets/img/icons/volume.png" alt="Volume" style="width:25px;cursor:pointer;">
+                            <img src="../assets/img/icons/volume.png" alt="Volume" style="width:25px;cursor:pointer;" onclick="setMute()">
                         </button>
                         <div class="progressBar">
                             <div class="progressBarBg">
